@@ -1,0 +1,19 @@
+/* Media Query for tablets and low end pc*/
+@media screen and (max-width: 1199px) {
+  #menu_button {
+    display: none;
+  }
+}
+
+/* Media Query for Mobile Devices */
+
+@media (max-width:767px) {
+  #menu_button {
+    display: inline;
+  }
+
+  /*hamburger menu*/
+  #hamburger_menu_container {
+    display: block;
+  }
+}
