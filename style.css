@@ -16,7 +16,7 @@
 #middle-button{
     margin-left:300px;
     padding:5px;
-    font-size:20px;
+    font-size:15px;
 }
 .head_button{
     display: inline-block;
@@ -24,7 +24,7 @@
     height:100%;
 }
 .head_button:hover{
-    font-size:21px;
+    font-size:16px;
     border-bottom:1px solid wheat;
     transition:border 1s;
     
@@ -61,11 +61,21 @@
 }
 
 /*hamburger menu*/
+@keyframes menu_animation {
+    from {margin-top:-50px;}
+    to {margin-top:0px;}
+  }
+
 #hamburger_menu_container{
     border-bottom:0.5px solid black;
-    /* position: absolute; */
+    position: absolute;/*as we need our menu above the carousel*/
+    background-color: #ffe28ad4;
+    width:100%;
+    z-index: 1;
     display:none;
+    animation: menu_animation .5s;
 }
+
 .menu{
     padding: 10px;
     font-size: 20px;
@@ -83,8 +93,34 @@
     margin-top:-100px;
 }
 .carousel-image img{
-    position: relative;
+    position: absolute;
     width:100%;
     height:100%;
     filter:brightness(30%);/*to make image more blacky */
 }   
+
+/*carousel center buttons*/
+#center_carousel_container{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    margin-top:-100px;
+    top: 40%;
+    left: 25%;
+    margin: 0;
+    color:white;
+    text-transform: capitalize;
+}
+#carousel_top_head h4{
+    font-family: 'Brush Script MT', cursive;
+    font-size:30px;
+    letter-spacing: 5px;
+}
+#carousel_main_head h1{
+    font-size:70px;
+}
+#carousel_sub_head h6{
+    font-weight: 10px;
+    letter-spacing: 2px;
+}
