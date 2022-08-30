@@ -1,11 +1,18 @@
 /* Media Query for tablets and low end pc*/
-@media screen and (max-width: 1199px) {
+@media (max-width: 1199px) {
   #menu_button {
     display: none;
   }
 
   #hamburger_menu_container {
     display: none;
+  }
+
+  /*welcome section*/
+  #welcome-section {
+    /*By default direction will be column in pc:row and mobile:column*/
+    flex-direction: row;
+    align-items: flex-start;
   }
 }
 
@@ -31,12 +38,12 @@
   }
 
   /*carousel center buttons*/
-  #center_carousel_container{
-    top:45%;
-    left:10%;
+  #center_carousel_container {
+    top: 45%;
+    left: 10%;
   }
 
-   #carousel_top_head h4 {
+  #carousel_top_head h4 {
     font-family: 'Brush Script MT', cursive;
     font-size: 20px;
     letter-spacing: 4px;
@@ -50,4 +57,21 @@
     font-weight: 10px;
     letter-spacing: 2px;
   }
+
+  /*welcome section*/
+  #welcome-message-container {
+    margin-top: 0px;
+    width: 100%;
+    padding: 20px;
+  }
+
+  #welcome-section {
+    /*By default direction will be column in pc:row and mobile:column*/
+    flex-direction: column;
+  }
+
+  #img-container {
+    width: 100%;
+  }
+
 }
