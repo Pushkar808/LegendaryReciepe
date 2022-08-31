@@ -1,4 +1,6 @@
 const menu_button = document.getElementById('menu_button');
+
+
 //after clicking menu button show the menu for mobile device only
 menu_button.onclick = () => {
   const hamburger_menu = document.getElementById('hamburger_menu_container');
@@ -17,7 +19,7 @@ const message_container = document.getElementById('welcome-message-container');
 window.addEventListener('scroll', () => {
   var coordinates = message_container.getBoundingClientRect();
   const banner = document.getElementById('img-container');
-  const header=document.getElementById('header');
+  const header = document.getElementById('header');
   let animate = true;
   if (animate && coordinates.top <= window.innerHeight)//if the section is visible then animate
   {
@@ -36,3 +38,28 @@ window.addEventListener('scroll', () => {
     header.classList.remove("fixed-header");
   }
 });
+
+
+//trigering query only for mobile devices
+const mediaQuery = window.matchMedia('(max-width:768px)')
+if (mediaQuery.matches) {
+  // Then trigger an alert
+  start_comment();
+}
+
+//random setInterval for comment section to show comment 
+function start_comment() {
+  let id = 1;//comment ids
+  setInterval(() => {//set interval to show ids 
+    document.getElementById("comment" + id).style.display = "none";
+    if (id < 3) {
+      id++;
+      document.getElementById("comment" + id).style.display = "block"
+    }
+    else {
+      id = 1;
+      document.getElementById("comment" + id).style.display = "block"
+    }
+    console.log(id);
+  }, 2000)
+}

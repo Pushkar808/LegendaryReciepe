@@ -14,6 +14,9 @@
     flex-direction: row;
     align-items: flex-start;
   }
+  footer{
+    flex-direction:row;
+  }
 }
 
 /* Media Query for Mobile Devices */
@@ -74,4 +77,10 @@
     width: 100%;
   }
 
+  footer{
+    flex-direction:column;
+  }
+  #comment2,#comment3{
+     display: none;
+  }
 }

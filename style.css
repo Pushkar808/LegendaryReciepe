@@ -23,7 +23,9 @@
     
 }
 #logo img {
-    width: 100px;
+    border-radius: 30px;
+    width: 50px;
+    height:50px;
 }
 
 #middle-button {
@@ -296,4 +298,53 @@ section:nth-child(even){
     border-radius: 50%;
     width:80px;
     height:80px;
+}
+#carousel-button-container a{
+    text-decoration: none;
+    color:black;
+}
+
+
+/*footer*/
+footer{
+    background-color: #000000;
+    color:#ffffff;
+    display:flex;
+    flex-direction: column;
+    padding:50px;
+    align-items: center;
+    justify-content: space-evenly
+}
+#about-container{
+    padding-top:30px;
+}
+#about-container div{
+    display:inline-block;
+    margin:0px 50px;
+    width:300px;
+}
+#footer-logo-container{
+    padding:30px;
+}
+#footer-logo-container img{
+    width:200px;
+    border-radius:50%;
+}
+/*social media icons on footer*/
+#social-media-buttons a{
+    text-decoration: none;
+    color:white;
+}
+#social-icon{
+    /* background-color: green; */
+    padding:5px;
+    font-size:40px;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    margin:0px 10px;
+}
+#social-icon i:hover{
+    border-radius: 50%;
+    box-shadow:grey 2px 2px 20px;
 }
