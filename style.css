@@ -2,7 +2,6 @@
 
 /*header*/
 #header {
-    position: relative;
     display: flex;
     justify-content: space-around;
     border: 1px solid black;
@@ -11,7 +10,18 @@
     z-index: 2;
     /*header to come above the caorusel*/
 }
-
+.relative-header{
+    position: relative;
+}
+/*to be added using js on scroll so that fixed header will be shown*/
+.fixed-header{
+    position: fixed;
+    top:0;
+    background-color:#484848;
+    height: 80px;
+    transition: all .5s ease-in;
+    
+}
 #logo img {
     width: 100px;
 }
@@ -144,11 +154,18 @@
     font-weight: 10px;
     letter-spacing: 2px;
 }
-
+/*all sections common css*/
+section:nth-child(odd){
+    background-color: #ebebebde;
+}
+section:nth-child(even){
+    background-image:url('./assets/bg-image1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 /*Welcome section*/
 #welcome-section {
     padding: 50px;
-    background-color: #ebebebde;
     display: flex;
     /*By default direction will be column in pc:row and mobile:column*/
     flex-direction: row;
@@ -238,3 +255,45 @@
     }
 }
 
+/*Comments / rating section */
+#people-section{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding:80px;
+}
+#people-container{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    border-radius:10px;
+}
+
+#comments-container{
+    display: flex;
+    width: 100%;
+}
+.comment{
+    width:100%;
+    padding:30px;
+    border-radius:5px;
+    background-color: #fff9e6f2;
+    margin:0px 19px;
+    height:400px;
+}
+#rating{
+    padding:20px 0px;
+    color:#ffbf00;
+}
+#comment-content{
+    color:#484848
+}
+#about-user:nth-child(2){
+    color:484848;
+}
+#profile-img img{
+    border-radius: 50%;
+    width:80px;
+    height:80px;
+}

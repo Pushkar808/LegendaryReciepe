@@ -17,10 +17,12 @@ const message_container = document.getElementById('welcome-message-container');
 window.addEventListener('scroll', () => {
   var coordinates = message_container.getBoundingClientRect();
   const banner = document.getElementById('img-container');
+  const header=document.getElementById('header');
   let animate = true;
   if (animate && coordinates.top <= window.innerHeight)//if the section is visible then animate
   {
     animate = false;
+    header.classList.add("fixed-header");
     banner.style.visibility = "visible";
     banner.style.animation = " fade 2s linear";
   }
@@ -31,5 +33,6 @@ window.addEventListener('scroll', () => {
     banner.style.animation = null;
     animate = true;
     banner.style.visibility = "hidden";
+    header.classList.remove("fixed-header");
   }
 });
