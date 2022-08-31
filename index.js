@@ -24,7 +24,8 @@ window.addEventListener('scroll', () => {
   if (animate && coordinates.top <= window.innerHeight)//if the section is visible then animate
   {
     animate = false;
-    header.classList.add("fixed-header");
+    header.classList.add("fixed-header"); 
+    header.classList.remove("relative-header");
     banner.style.visibility = "visible";
     banner.style.animation = " fade 2s linear";
   }
@@ -35,8 +36,10 @@ window.addEventListener('scroll', () => {
     banner.style.animation = null;
     animate = true;
     banner.style.visibility = "hidden";
+    header.classList.add("relative-header"); 
     header.classList.remove("fixed-header");
   }
+  
 });
 
 

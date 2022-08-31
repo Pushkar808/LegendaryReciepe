@@ -4,7 +4,7 @@
 #header {
     display: flex;
     justify-content: space-around;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 100%;
     padding: 20px;
     z-index: 2;
@@ -96,6 +96,7 @@
     position: absolute;
     /*as we need our menu above the carousel*/
     background-color: #ffe28ad4;
+    top:78px;
     width: 100%;
     z-index: 1;
     display: none;
