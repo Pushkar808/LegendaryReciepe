@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Legendary Reciepes</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/4c8d21ec57.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+
+</head>
+
+<body>
+    <!-- website header -->
+    <header id="header" class="relative-header">
+        <div id="logo">
+            <img src="/assets/logo.jfif" alt="Logo">
+        </div>
+        <div id="middle-button">
+            <!--To be shown only on PC-->
+            <div class="head_button"><a href="#">Home</a></div>
+            <div class="head_button"><a href="#">My Favourites</a></div>
+            <div class="head_button"><a href="#">Recipes</a></div>
+            <div class="head_button"><a href="#">About Us</a></div>
+            <div class="head_button"><a href="#footer">Contact Us</a></div>
+        </div>
+        <!--social media buttons-->
+        <div id="right-buttons">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-facebook"></i>
+            <a href="#" id="menu_button"><i class="fa-solid fa-burger"></i></a>
+        </div>
+
+    </header>
+    <!-- menu to be shown on mobile screen only  -->
+    <!-- since menu button is shown only on mobile it will viewd after click only -->
+    <div id="hamburger_menu_container">
+        <ul class="menu">
+            <li class="menu-item"><a id="Home" href="index.html">Home</a></li>
+            <hr>
+            <li class="menu-item"><a id="favourite" href="index.html">My Favourites</a></li>
+            <hr>
+            <li class="menu-item"><a id="categories" href="index.html">Recipes</a></li>
+            <hr>
+            <li class="menu-item"><a id="about" href="index.html">About Us</a></li>
+            <hr>
+            <li class="menu-item"><a id="contact" href="#footer">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- carousle stac-->
+    <div id="carousel-container">
+        <!-- different images of carousel -->
+        <div id="image1" class="carousel-image">
+            <img src="assets/carousel_image1.jpg">
+        </div>
+        <!-- <div id="image2" class="carousel-image"></div>
+            <div id="image3" class="carousel-image"></div>
+             -->
+        <div id="center_carousel_container">
+            <div id="carousel_top_head">
+                <h4>Discover</h4>
+            </div>
+            <div id="carousel_main_head">
+                <h1>Our Categories</h1>
+            </div>
+            <div id="carousel_sub_head">
+                <h6>Even if you're not a great chef, there's nothing to stop you understanding <br> the difference
+                    between what tastes good and what doesn't.</h6>
+            </div>
+        </div>
+    </div>
+    <!-- categories -->
+    <main>
+        <section id="category-section">
+
+            <div id="category-head">
+                <h1>Categories</h1>
+            </div>
+            <!-- category container -->
+            <div id="category-container">
+                <!-- this code is appended by js -->
+                <!-- <div id="category">
+                    <div id="category-img"><img src="/assets/favourites.jfif" alt="Category image"></div>
+                    <div id="catgeory-name">Sample 1</div>
+                </div> -->
+                
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div id="about-container">
+            <div id="address-container">
+                <h5>Our Address:</h5>
+                <p>22 Alnahas Building, 2 AlBahr St, Tanta Al-Gharbia Governorate, Egypt</p>
+            </div>
+            <div id="calling-container">
+                <h5>Calling Hours:</h5>
+                <p>Mon - Fri: 10 AM - 11 PM</p>
+                <p>Sat - Sun: 9 AM - 1 PM</p>
+            </div>
+            <div id="contact-container">
+                <h5>Contact Us:</h5>
+                <p><b>Email: </b>ok@gg.cc</p>
+                <p><b>Contact: </b>(+91) 9876543210</p>
+            </div>
+
+        </div>
+        <hr>
+        <div id="footer-logo-container">
+            <img src="/assets/logo.jfif">
+        </div>
+        <div id="social-media-buttons">
+            <a href="#"><span id="social-icon"><i class="fa-brands fa-facebook"></i></span></a>
+            <a href="#"><span id="social-icon"> <i class="fa-brands fa-pinterest"></i></span></a>
+            <a href="#"><span id="social-icon"><i class="fab fa-twitter-square"></i></i></span></a>
+            <a href="#"> <span id="social-icon"><i class="fab fa-youtube-square"></i></i></span></a>
+        </div>
+    </footer>
+    <button href="#" id="sroll-up"><i class="fa-solid fa-angle-up"></i></button>
+    <script src="index.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

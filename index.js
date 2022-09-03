@@ -1,3 +1,6 @@
+//all the basic styling has been done in this JS file the AJAX calls has been made in other 
+//script.js so that code will be simple and easy to understand
+
 const menu_button = document.getElementById('menu_button');
 
 
@@ -66,3 +69,19 @@ function start_comment() {
     console.log(id);
   }, 2000)
 }
+
+const scroll_up=document.getElementById('sroll-up');
+//so that first button is hidden then if window scroll down then it will be visible
+window.onscroll = function() {
+  if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
+    scroll_up.style.display = "block";
+  } else {
+    scroll_up.style.display = "none";
+  }
+}
+
+//scroll up function
+scroll_up.addEventListener('click',()=>{
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+});
