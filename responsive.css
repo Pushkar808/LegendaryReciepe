@@ -14,9 +14,13 @@
     flex-direction: row;
     align-items: flex-start;
   }
-  footer{
-    flex-direction:row;
+
+  footer {
+    flex-direction: row;
   }
+
+
+
 }
 
 /* Media Query for Mobile Devices */
@@ -77,10 +81,20 @@
     width: 100%;
   }
 
-  footer{
-    flex-direction:column;
+  footer {
+    flex-direction: column;
   }
-  #comment2,#comment3{
-     display: none;
+
+  #comment2,
+  #comment3 {
+    display: none;
   }
+
+
+  /* category  */
+  #category-img img {
+    width: 150px;
+    height: 150px;
+  }
+
 }

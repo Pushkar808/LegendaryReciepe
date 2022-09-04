@@ -27,7 +27,7 @@ window.addEventListener('scroll', () => {
   if (animate && coordinates.top <= window.innerHeight)//if the section is visible then animate
   {
     animate = false;
-    header.classList.add("fixed-header"); 
+    header.classList.add("fixed-header");
     header.classList.remove("relative-header");
     banner.style.visibility = "visible";
     banner.style.animation = " fade 2s linear";
@@ -39,10 +39,10 @@ window.addEventListener('scroll', () => {
     banner.style.animation = null;
     animate = true;
     banner.style.visibility = "hidden";
-    header.classList.add("relative-header"); 
+    header.classList.add("relative-header");
     header.classList.remove("fixed-header");
   }
-  
+
 });
 
 
@@ -70,9 +70,9 @@ function start_comment() {
   }, 2000)
 }
 
-const scroll_up=document.getElementById('sroll-up');
+const scroll_up = document.getElementById('sroll-up');
 //so that first button is hidden then if window scroll down then it will be visible
-window.onscroll = function() {
+window.onscroll = function () {
   if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
     scroll_up.style.display = "block";
   } else {
@@ -81,7 +81,44 @@ window.onscroll = function() {
 }
 
 //scroll up function
-scroll_up.addEventListener('click',()=>{
+scroll_up.addEventListener('click', () => {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 });
+
+
+//search button hide/show
+const search_button = document.querySelector('#right-buttons .fa-magnifying-glass');
+const search_box = document.getElementById('search-container');
+search_button.addEventListener('click', () => {
+  console.log(search_box)
+  search_box.style.visibility = "visible";
+});
+
+//cross button
+const cross_button = document.getElementById('close-button');
+cross_button.addEventListener('click', () => {
+  search_box.style.visibility = "hidden";
+  search_box.style.animation = "none";
+  search_box.offsetHeight;
+  search_box.style.animation = null;
+});
+
+//working on this need to add
+//suggetion box styling on key press and key down
+// let suggetion_number = 0;//suggetion number id increase it to go further
+// const suggetion_length = document.querySelectorAll('#suggestion-container div').length;//getting length of suggetion so that if user comes at last start to 1 again
+// const suggetion_input = document.getElementById('search-input');
+// suggetion_input.addEventListener('keydown', () => {
+//   //function when user press down key to go to option 
+//   const suggetion_item = document.getElementById('suggetion-item' + suggetion_number);
+//   if(suggetion_item!=null)
+//   suggetion_item.classList.remove("suggetion-active");
+//   suggetion_number++;
+//   suggetion_item.classList.add("suggetion-active");
+//   //if we moved at last and again press down go up
+//   if (suggetion_item > suggetion_length)
+//     suggetion_number = 1
+  
+// });
+
