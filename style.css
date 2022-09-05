@@ -436,6 +436,7 @@ section:nth-child(odd) {
     position: relative;
     padding:0px 10px;
     width: 50%;
+    /* visibility: hidden; */
 }
 #suggestion-container hr{
     margin:0;

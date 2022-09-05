@@ -104,21 +104,39 @@ cross_button.addEventListener('click', () => {
   search_box.style.animation = null;
 });
 
-//working on this need to add
-//suggetion box styling on key press and key down
-// let suggetion_number = 0;//suggetion number id increase it to go further
-// const suggetion_length = document.querySelectorAll('#suggestion-container div').length;//getting length of suggetion so that if user comes at last start to 1 again
-// const suggetion_input = document.getElementById('search-input');
-// suggetion_input.addEventListener('keydown', () => {
-//   //function when user press down key to go to option 
-//   const suggetion_item = document.getElementById('suggetion-item' + suggetion_number);
-//   if(suggetion_item!=null)
-//   suggetion_item.classList.remove("suggetion-active");
-//   suggetion_number++;
-//   suggetion_item.classList.add("suggetion-active");
-//   //if we moved at last and again press down go up
-//   if (suggetion_item > suggetion_length)
-//     suggetion_number = 1
-  
-// });
+
+//if input is active then only show the suggetion box else hide it
+// const input_box=document.getElementById('search-input');
+// input_box.addEventListener('focus',()=>{
+//   console.log("FOCUS")
+//   document.getElementById('search-container').style.visibility="visible";
+// })
+// input_box.addEventListener('focusout',()=>{
+//   console.log("FOCUSOUT")
+//   document.getElementById('search-container').style.visibility="hidden";
+// })
+
+// suggetion box styling on key press and key down
+let suggetion_number = 0;//suggetion number id increase it to go further
+let suggetion_item = "";
+const suggetion_length = document.querySelectorAll('#suggestion-container div').length;//getting length of suggetion so that if user comes at last start to 1 again
+const suggetion_input = document.getElementById('search-input');
+suggetion_input.addEventListener('keydown', () => {
+  console.log(suggetion_number + "" + suggetion_length);
+  //function when user press down key to go to option 
+  remove_suggclass();
+  suggetion_number++;
+  suggetion_item = document.getElementById('suggetion-item' + suggetion_number);
+  suggetion_item.classList.add("suggetion-active");
+  //if we moved at last and again press down go up
+  if(suggetion_number>=suggetion_length)
+    suggetion_number=0;
+});
+
+function remove_suggclass(){
+  let classes=document.querySelectorAll('.suggetion-active');
+  for(let i=0;i<classes.length;i++){
+    classes[0].classList.remove('suggetion-active');
+  }
+}
 
