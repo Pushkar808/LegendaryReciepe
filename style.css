@@ -436,6 +436,7 @@ section:nth-child(odd) {
     position: relative;
     padding:0px 10px;
     width: 50%;
+    overflow: auto;
     /* visibility: hidden; */
 }
 #suggestion-container hr{
@@ -472,6 +473,7 @@ footer {
     display: inline-block;
     margin: 0px 50px;
     width: 300px;
+    color:#ffffff;
 }
 
 #footer-logo-container {
