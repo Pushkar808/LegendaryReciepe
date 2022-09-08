@@ -390,7 +390,7 @@ section:nth-child(odd) {
     opacity: 0.85;
     z-index: 90;
     /*higest as we want to show it always on top*/
-    /* visibility: hidden; */
+    visibility: hidden;
     animation:search_animation 2s ease;
 }
 @keyframes search_animation {
@@ -437,7 +437,6 @@ section:nth-child(odd) {
     padding:0px 10px;
     width: 50%;
     overflow: auto;
-    /* visibility: hidden; */
 }
 #suggestion-container hr{
     margin:0;

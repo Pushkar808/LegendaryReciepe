@@ -76,9 +76,19 @@
     /*By default direction will be column in pc:row and mobile:column*/
     flex-direction: column;
   }
-
+  
   #img-container {
     width: 100%;
+  }
+
+
+  /* suggetion box  */
+  #search-input {
+    width: 400px;
+  }
+
+  #suggestion-container {
+    width: 75%;
   }
 
   footer {
@@ -96,5 +106,7 @@
     width: 150px;
     height: 150px;
   }
+
+
 
 }
