@@ -76,7 +76,7 @@
     /*By default direction will be column in pc:row and mobile:column*/
     flex-direction: column;
   }
-  
+
   #img-container {
     width: 100%;
   }
@@ -107,6 +107,22 @@
     height: 150px;
   }
 
+  /*recipe page*/
 
+  #recipe-head-container {
+    flex-direction: column-reverse;
+  }
+
+  #recipe-head{
+    height:300px;
+  }
+  #recipe-img-container {
+    width: 100%;
+    height:350px;
+  }
+  #recipe-img-container img {
+    width: 100%;
+    height:100%;
+  }
 
 }

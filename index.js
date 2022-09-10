@@ -110,12 +110,12 @@ cross_button.addEventListener('click', () => {
 let suggetion_number = 0;//suggetion number id increase it to go further
 let suggetion_item = "";
 //if user press enter 1 time then its to select the item and if again(without pressing down) press enter then its to submit the form
-let enterCount=1;
+let enterCount = 1;
 const suggetion_input = document.getElementById('search-input');
 suggetion_input.addEventListener('keydown', (e) => {
   //if down key is pressed
   if (e.keyCode == '40') {
-    enterCount=1;
+    enterCount = 1;
     const suggetion_length = document.querySelectorAll('#suggestion-container div').length;//getting length of suggetion so that if user comes at last start to 1 again
     console.log(suggetion_number + "" + suggetion_length);
     //function when user press down key to go to option 
@@ -128,28 +128,48 @@ suggetion_input.addEventListener('keydown', (e) => {
     if (suggetion_number >= suggetion_length)
       suggetion_number = 0;
   }
-  if(e.keyCode==13 && enterCount==1){//select the suggetion and show it to input
+  if (e.keyCode == 13 && enterCount == 1) {//select the suggetion and show it to input
     e.preventDefault();//so that it will not submit the form on enter just change input value
-    const active_suggetion=document.getElementsByClassName('suggetion-active')[0];
+    const active_suggetion = document.getElementsByClassName('suggetion-active')[0];
     //setting the input box value after pressing enter
-    suggetion_input.value=active_suggetion.innerHTML;
+    suggetion_input.value = active_suggetion.innerHTML;
     //getting control/cursor back to input box
     suggetion_input.focus();
     enterCount++;
   }
-  else if(e.keyCode==13 && enterCount!=1){//submit the form 
+  else if (e.keyCode == 13 && enterCount != 1) {//submit the form 
     enterCount++;
     //submitting the form
     document.getElementById('search-form').submit();
   }
 });
-
+//function to remove active-class 
 function remove_suggclass() {
   let classes = document.querySelectorAll('.suggetion-active');
   for (let i = 0; i < classes.length; i++) {
     classes[0].classList.remove('suggetion-active');
   }
 }
+
+
+
+
+//ingrident checkbox onclick strike down the ingrident
+
+
+const ingrident_checkbox = document.querySelectorAll('#ingridient input');
+ingrident_checkbox.forEach(checkbox => {
+    checkbox.addEventListener('click', () => {
+        //getting parent checkbox
+        const paratostrike = checkbox.parentElement;
+        //if checked strike it else none
+        if (checkbox.checked)
+            paratostrike.style.textDecoration = "line-through";
+        else
+            paratostrike.style.textDecoration = "none";
+
+    })
+});
 
 
 

@@ -32,18 +32,18 @@
 let current_input = "";
 let receipe_name = [];//to store current names and use it in else after populating it to fine tune result
 document.getElementById('search-input').addEventListener('keydown', (event) => {
-    if (event.keyCode >= 65 && event.keyCode <= 90 || event.keyCode==8 ) {//if the key pressed is of alphabet only as API can search only starting alphabet
+    if (event.keyCode >= 65 && event.keyCode <= 90 || event.keyCode == 8) {//if the key pressed is of alphabet only as API can search only starting alphabet
         const input_field = document.getElementById('search-input').value;
         current_input = input_field + event.key;//current entered string
         let suggestion_container = document.getElementById('suggestion-container');
         if (current_input.length == 1) {
             addJSONlist(event);//calling add function below which populate list
-        }   
+        }
         else {//searching substring to fine tune suggetions
             console.log(receipe_name);
-            let suggetion_count=0;
+            let suggetion_count = 0;
             suggestion_container.innerHTML = "";
-            for(let i=0;i<receipe_name.length;i++){
+            for (let i = 0; i < receipe_name.length; i++) {
                 if (receipe_name[i].substr(0, current_input.length).toLowerCase() == current_input.toLowerCase()) {
                     //if the substring is there in recipe_name
                     suggetion_count += 1;
@@ -60,7 +60,7 @@ document.getElementById('search-input').addEventListener('keydown', (event) => {
     }
 })
 //if single alphabet is there then poplulate the string and name array with this
-function addJSONlist(event){
+function addJSONlist(event) {
     let keyPressed = event.key;
     var xhrRequest = new XMLHttpRequest();
     xhrRequest.onload = () => {
@@ -69,7 +69,7 @@ function addJSONlist(event){
             let resposeJSON = JSON.parse(xhrRequest.response);
             let res_length = resposeJSON.meals.length;
             let suggetion_count = 0;
-            receipe_name=[];//resetting the array values
+            receipe_name = [];//resetting the array values
             //clearing old values
             suggestion_container.innerHTML = "";
             //setting the html for categries that we got
@@ -94,3 +94,42 @@ function addJSONlist(event){
     xhrRequest.open('get', 'https://www.themealdb.com/api/json/v1/1/search.php?f=' + keyPressed);
     xhrRequest.send();
 }
+
+
+//if single alphabet is there then poplulate the HTML with this
+function fetchRecipe(recipeName) {
+    var xhrRequest = new XMLHttpRequest();
+    xhrRequest.onload = () => {
+        let resposeJSON = JSON.parse(xhrRequest.response);
+        let res_length = resposeJSON.meals.length;
+        // //setting the html for recipe that we got
+        for (let i = 0; i < res_length; i++) {
+            //     //getting name of the category and image for the category
+            console.log("SAA" + resposeJSON.meals[i].strMealThumb);
+            //appending to only required HTML (can use above way also) since we didn't need to loop them 
+            document.getElementById('recipe-header').innerHTML += resposeJSON.meals[i].strMeal;
+            document.getElementById('recipe-category').innerHTML += `<p><b>Category: </b>` + resposeJSON.meals[i].strCategory + `</p>`;
+            document.getElementById('recipe-area').innerHTML += `<p><b>Area Of Origin: </b>` + resposeJSON.meals[i].strArea + `</p>`;
+            document.getElementById('recipe-info').innerHTML += `<p>` + resposeJSON.meals[i].strInstructions + `</p>`;
+            document.getElementById('recipe-img-container').innerHTML += `<img src="` + resposeJSON.meals[i].strMealThumb + `">`;
+
+            //*Remaing to fetch ingridents
+            for (let j = 9; j <= 28; j++) {
+                
+            }
+
+            // category_container.innerHTML += `
+            // <div id="category">
+            //     <a href="https://www.themealdb.com/api/json/v1/1/filter.php?c=`+ recipe_name + `"><div id="category-img"><img src="` + image + `" alt="Category image"></div></a>
+            //     <div id="catgeory-name">`+ recipe_name + `</div>
+            // </div>
+            // `;
+
+        }
+    };
+    xhrRequest.open('get', 'https://www.themealdb.com/api/json/v1/1/search.php?s=' + recipeName);
+    xhrRequest.send();
+
+}
+
+fetchRecipe("Arrabiata")
