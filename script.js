@@ -12,11 +12,10 @@
             //getting name of the category and image for the category
             let category_name = resposeJSON.categories[i].strCategory;
             let image = resposeJSON.categories[i].strCategoryThumb;
-            console.log(category_name + "" + image)
             let category_container = document.getElementById('category-container');
             category_container.innerHTML += `
             <div id="category">
-                <a href="https://www.themealdb.com/api/json/v1/1/filter.php?c=`+ category_name + `"><div id="category-img"><img src="` + image + `" alt="Category image"></div></a>
+                <a href="detailed_category.html?category_name=`+ category_name + `"><div id="category-img"><img src="` + image + `" alt="Category image"></div></a>
                 <div id="catgeory-name">`+ category_name + `</div>
             </div>
             `;
@@ -40,7 +39,7 @@ document.getElementById('search-input').addEventListener('keydown', (event) => {
             addJSONlist(event);//calling add function below which populate list
         }
         else {//searching substring to fine tune suggetions
-            console.log(receipe_name);
+
             let suggetion_count = 0;
             suggestion_container.innerHTML = "";
             for (let i = 0; i < receipe_name.length; i++) {
@@ -76,14 +75,14 @@ function addJSONlist(event) {
             for (let i = 0; i < res_length; i++) {
                 suggetion_count += 1;
                 let name = resposeJSON.meals[i].strMeal;
+                name.replace(/&amp;/g, '+');
                 receipe_name.push(name);//so that we have the array for the particular letter recipes
-                console.log(name);
+
                 suggestion_container.innerHTML += `
         <div id="suggetion-item`+ suggetion_count + `">` + name + `</div>
         <hr>
     `;
             }
-            console.log(resposeJSON);
         }
         catch (e) {
             console.log("ERROR" + e);
@@ -103,32 +102,27 @@ function fetchRecipe(recipeName) {
         let resposeJSON = JSON.parse(xhrRequest.response);
         let res_length = resposeJSON.meals.length;
         // //setting the html for recipe that we got
-        for (let i = 0; i < res_length; i++) {
-            //     //getting name of the category and image for the category
-            console.log("SAA" + resposeJSON.meals[i].strMealThumb);
-            //appending to only required HTML (can use above way also) since we didn't need to loop them 
-            document.getElementById('recipe-header').innerHTML += resposeJSON.meals[i].strMeal;
-            document.getElementById('recipe-category').innerHTML += `<p><b>Category: </b>` + resposeJSON.meals[i].strCategory + `</p>`;
-            document.getElementById('recipe-area').innerHTML += `<p><b>Area Of Origin: </b>` + resposeJSON.meals[i].strArea + `</p>`;
-            document.getElementById('recipe-info').innerHTML += `<p>` + resposeJSON.meals[i].strInstructions + `</p>`;
-            document.getElementById('recipe-img-container').innerHTML += `<img src="` + resposeJSON.meals[i].strMealThumb + `">`;
+        //     //getting name of the category and image for the category
+        //appending to only required HTML (can use above way also) since we didn't need to loop them 
+        document.getElementById('recipe-header').innerHTML += resposeJSON.meals[0].strMeal;
+        document.getElementById('recipe-category').innerHTML += `<p><b>Category: </b>` + resposeJSON.meals[0].strCategory + `</p>`;
+        document.getElementById('recipe-area').innerHTML += `<p><b>Area Of Origin: </b>` + resposeJSON.meals[0].strArea + `</p>`;
+        document.getElementById('recipe-info').innerHTML += `<p>` + resposeJSON.meals[0].strInstructions + `</p>`;
+        document.getElementById('recipe-img-container').innerHTML += `<img src="` + resposeJSON.meals[0].strMealThumb + `">`;
 
-            //*Remaing to fetch ingridents
-            for (let j = 1; j <= 20; j++) {
+        //*Remaing to fetch ingridents
+        for (let j = 1; j <= 20; j++) {
 
-                let ingrident_container = document.getElementById('ingridents-container');
-                {
-                    resposeJSON.meals[0]["strIngredient" + (j)] && (ingrident_container.innerHTML += `<div class="ingridient">
+            let ingrident_container = document.getElementById('ingridents-container');
+            {
+                resposeJSON.meals[0]["strIngredient" + (j)] && (ingrident_container.innerHTML += `<div class="ingridient">
                     <input class="ingrident-check" type="checkbox" value="OK">
                     <div class="ingrident-name">${resposeJSON.meals[0]["strIngredient" + (j)]}</div>
                     <div class="ingrident-quantity">${resposeJSON.meals[0]["strMeasure" + (j)]}</div>
                     </div>`)
-                }
-
-
             }
-            setListener();
         }
+        setListener();
     };
     xhrRequest.open('get', 'https://www.themealdb.com/api/json/v1/1/search.php?s=' + recipeName);
     xhrRequest.send();
@@ -138,10 +132,8 @@ function fetchRecipe(recipeName) {
 //function to strike down list on click of checkbox
 function setListener() {
     const ingrident_checkbox = document.querySelectorAll('.ingridient input');
-    console.log(ingrident_checkbox)
     ingrident_checkbox.forEach(checkbox => {
         checkbox.addEventListener('click', () => {
-            console.log("OKkk")
             //getting parent checkbox
             const paratostrike = checkbox.parentElement;
             //if checked strike it else none
@@ -154,16 +146,55 @@ function setListener() {
     });
 }
 
-//redirecting to the recipe page on submit of a search item
-var form_submit= () => {
-    console.log("OK");
+//getting the html page name so that we can run the function
+var path = window.location.pathname;
+var page = path.split("/").pop();
+
+//basic if conditions which decides which function to call on which page
+if (page == "recipe.html") {//run the fetch recipe function
     var url_string = window.location;
     var url = new URL(url_string);
     var item = url.searchParams.get("item");
-    console.log(item);
+    fetchRecipe(item)
+}
+else if (page == "detailed_category.html") {
+    //run function to fetch and parse the data on detailed category page
+    var url_string = window.location;
+    var url = new URL(url_string);
+    var category_name = url.searchParams.get("category_name");
+    fetchRecipe_fromCat(category_name);
+}
+
+//function to fetch recipe from category and parse to html
+function fetchRecipe_fromCat(category_name) {
+    const container = document.getElementById('category-recipe-container');
+    var xhrRequest = new XMLHttpRequest();
+    xhrRequest.onload = () => {
+        let resposeJSON = JSON.parse(xhrRequest.response);
+        let res_length = resposeJSON.meals.length;
+        //setting html
+        for (let i = 0; i < res_length; i++) {
+            let name = resposeJSON.meals[i].strMeal;
+            container.innerHTML += `
+            <div class="recipe-card">
+                        <div class="recipecard-image"><img src="`+resposeJSON.meals[i].strMealThumb+`"></div>
+                        <div class="recipecard-info">`+resposeJSON.meals[i].strMeal+`</div>
+                        <div class="card-button">
+                            <div class="recipecard-button"><a href="/recipe.html?item=`+resposeJSON.meals[i].strMeal+`">Goto Recipe</a></div>
+                            <div class="recipecard-fav-button" id="`+resposeJSON.meals[i].idMeal+`"><a href="#" onClick="add_to_favourites()"><i class="fa-regular fa-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+            `
+        }
+    };
+    xhrRequest.open('get', 'https://www.themealdb.com/api/json/v1/1/filter.php?c=' + category_name);
+    xhrRequest.send();
     
-    // fetchRecipe(item);
 }
 
 
-// fetchRecipe("Arrabiata")
+//favorite button listener
+function add_to_favourites(){
+    alert("Added to your favourites")
+}

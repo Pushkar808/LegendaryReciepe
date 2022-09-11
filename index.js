@@ -66,7 +66,6 @@ function start_comment() {
       id = 1;
       document.getElementById("comment" + id).style.display = "block"
     }
-    console.log(id);
   }, 2000)
 }
 
@@ -91,7 +90,6 @@ scroll_up.addEventListener('click', () => {
 const search_button = document.querySelector('#right-buttons .fa-magnifying-glass');
 const search_box = document.getElementById('search-container');
 search_button.addEventListener('click', () => {
-  console.log(search_box)
   search_box.style.visibility = "visible";
 });
 
@@ -117,7 +115,6 @@ suggetion_input.addEventListener('keydown', (e) => {
   if (e.keyCode == '40') {
     enterCount = 1;
     const suggetion_length = document.querySelectorAll('#suggestion-container div').length;//getting length of suggetion so that if user comes at last start to 1 again
-    console.log(suggetion_number + "" + suggetion_length);
     //function when user press down key to go to option 
     remove_suggclass();
     suggetion_number++;
@@ -132,7 +129,8 @@ suggetion_input.addEventListener('keydown', (e) => {
     e.preventDefault();//so that it will not submit the form on enter just change input value
     const active_suggetion = document.getElementsByClassName('suggetion-active')[0];
     //setting the input box value after pressing enter
-    suggetion_input.value = active_suggetion.innerHTML;
+    const value=active_suggetion.innerHTML.replace(/&amp;/g, '&');
+    suggetion_input.value = value;
     //getting control/cursor back to input box
     suggetion_input.focus();
     enterCount++;
