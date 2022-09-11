@@ -39,30 +39,33 @@ a {
     margin-left: 300px;
     padding: 5px;
     font-size: 15px;
+    display: flex;
+    align-items: center;
 }
 
 .head_button {
     display: inline-block;
     margin: 0px 30px;
-    height: 100%;
+    transition: all 0.5s;
+    border: 1px solid transparent;
+    FONT-WEIGHT: 100;
 }
 
 .head_button:hover {
-    font-size: 16px;
     border-bottom: 1px solid wheat;
-    transition: border 0.7s;
+    transform: scale(1.05);
 
 }
 
 .head_button a {
     text-decoration: none;
     color: wheat;
+    display: block;
     font-weight: bold;
 }
 
 .head_button a:hover {
     color: rgb(255, 205, 111);
-    ;
 }
 
 #right-buttons {
@@ -613,23 +616,27 @@ footer {
     width:100%;
 } 
 
-#ingridient{
+.ingridient{
     display: flex;
     align-items: baseline;
     flex-wrap: wrap;
     font-size:20px;
     padding:10px;
+    text-transform: capitalize;
 }
-#ingridients-header,#recipe-info-header{
+.ingridients-header,#recipe-info-header{
     padding:20px;
 }
-#ingridient div{
+.ingridient div{
     margin:10px;
 }
-#ingridient input{
+.ingridient input{
     width:20px;
     height:20px;
     margin:10px;
+}
+.ingrident-name::after{
+    content:":";
 }
 #recipe-info{
     display:flex;
@@ -638,4 +645,5 @@ footer {
     width:100%;
     font-size:20px;
     padding:20px;
+    
 }

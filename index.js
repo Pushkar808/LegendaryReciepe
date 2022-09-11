@@ -152,25 +152,3 @@ function remove_suggclass() {
 }
 
 
-
-
-//ingrident checkbox onclick strike down the ingrident
-
-
-const ingrident_checkbox = document.querySelectorAll('#ingridient input');
-ingrident_checkbox.forEach(checkbox => {
-    checkbox.addEventListener('click', () => {
-        //getting parent checkbox
-        const paratostrike = checkbox.parentElement;
-        //if checked strike it else none
-        if (checkbox.checked)
-            paratostrike.style.textDecoration = "line-through";
-        else
-            paratostrike.style.textDecoration = "none";
-
-    })
-});
-
-
-
-

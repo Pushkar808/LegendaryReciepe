@@ -114,22 +114,56 @@ function fetchRecipe(recipeName) {
             document.getElementById('recipe-img-container').innerHTML += `<img src="` + resposeJSON.meals[i].strMealThumb + `">`;
 
             //*Remaing to fetch ingridents
-            for (let j = 9; j <= 28; j++) {
-                
+            for (let j = 1; j <= 20; j++) {
+
+                let ingrident_container = document.getElementById('ingridents-container');
+                {
+                    resposeJSON.meals[0]["strIngredient" + (j)] && (ingrident_container.innerHTML += `<div class="ingridient">
+                    <input class="ingrident-check" type="checkbox" value="OK">
+                    <div class="ingrident-name">${resposeJSON.meals[0]["strIngredient" + (j)]}</div>
+                    <div class="ingrident-quantity">${resposeJSON.meals[0]["strMeasure" + (j)]}</div>
+                    </div>`)
+                }
+
+
             }
-
-            // category_container.innerHTML += `
-            // <div id="category">
-            //     <a href="https://www.themealdb.com/api/json/v1/1/filter.php?c=`+ recipe_name + `"><div id="category-img"><img src="` + image + `" alt="Category image"></div></a>
-            //     <div id="catgeory-name">`+ recipe_name + `</div>
-            // </div>
-            // `;
-
+            setListener();
         }
     };
     xhrRequest.open('get', 'https://www.themealdb.com/api/json/v1/1/search.php?s=' + recipeName);
     xhrRequest.send();
 
 }
+//as the html is setting first so we will call this after setting the html
+//function to strike down list on click of checkbox
+function setListener() {
+    const ingrident_checkbox = document.querySelectorAll('.ingridient input');
+    console.log(ingrident_checkbox)
+    ingrident_checkbox.forEach(checkbox => {
+        checkbox.addEventListener('click', () => {
+            console.log("OKkk")
+            //getting parent checkbox
+            const paratostrike = checkbox.parentElement;
+            //if checked strike it else none
+            if (checkbox.checked)
+                paratostrike.style.textDecoration = "line-through";
+            else
+                paratostrike.style.textDecoration = "none";
 
-fetchRecipe("Arrabiata")
+        })
+    });
+}
+
+//redirecting to the recipe page on submit of a search item
+var form_submit= () => {
+    console.log("OK");
+    var url_string = window.location;
+    var url = new URL(url_string);
+    var item = url.searchParams.get("item");
+    console.log(item);
+    
+    // fetchRecipe(item);
+}
+
+
+// fetchRecipe("Arrabiata")
