@@ -100,7 +100,6 @@ function fetchRecipe(recipeName) {
     var xhrRequest = new XMLHttpRequest();
     xhrRequest.onload = () => {
         let resposeJSON = JSON.parse(xhrRequest.response);
-        let res_length = resposeJSON.meals.length;
         // //setting the html for recipe that we got
         //     //getting name of the category and image for the category
         //appending to only required HTML (can use above way also) since we didn't need to loop them 
@@ -123,11 +122,38 @@ function fetchRecipe(recipeName) {
             }
         }
         setListener();
+        if (AlreadyFavourite(resposeJSON.meals[0].idMeal)) {//if this recipe is already in favourite then change button style
+            document.getElementById('recipe-favorite-button').style.display = "none";
+            document.getElementById('remove-favorite-button').style.display = "inline";
+        }
+
+
+        //listener to add the favourite
+        document.getElementById('recipe-favorite-button').addEventListener('click', () => {
+            document.getElementById('recipe-favorite-button').style.display = "none";
+            document.getElementById('remove-favorite-button').style.display = "inline";
+            add_to_favourites(resposeJSON.meals[0].idMeal);
+        })
+        //listener to remove the favourite
+        document.getElementById('remove-favorite-button').addEventListener('click', () => {
+            document.getElementById('recipe-favorite-button').style.display = "inline";
+            document.getElementById('remove-favorite-button').style.display = "none";
+            remove_from_favourites(resposeJSON.meals[0].idMeal);
+        })
+
     };
     xhrRequest.open('get', 'https://www.themealdb.com/api/json/v1/1/search.php?s=' + recipeName);
     xhrRequest.send();
 
+
+
+
 }
+//check if this id is already in local storage or not
+function AlreadyFavourite(id) {
+    return localStorage.getItem(id) ? true : false;
+}
+
 //as the html is setting first so we will call this after setting the html
 //function to strike down list on click of checkbox
 function setListener() {
@@ -145,6 +171,9 @@ function setListener() {
         })
     });
 }
+
+
+
 
 //getting the html page name so that we can run the function
 var path = window.location.pathname;
@@ -175,13 +204,14 @@ function fetchRecipe_fromCat(category_name) {
         //setting html
         for (let i = 0; i < res_length; i++) {
             let name = resposeJSON.meals[i].strMeal;
+
             container.innerHTML += `
             <div class="recipe-card">
-                        <div class="recipecard-image"><img src="`+resposeJSON.meals[i].strMealThumb+`"></div>
-                        <div class="recipecard-info">`+resposeJSON.meals[i].strMeal+`</div>
+                        <div class="recipecard-image"><img src="`+ resposeJSON.meals[i].strMealThumb + `"></div>
+                        <div class="recipecard-info">`+ resposeJSON.meals[i].strMeal + `</div>
                         <div class="card-button">
-                            <div class="recipecard-button"><a href="/recipe.html?item=`+resposeJSON.meals[i].strMeal+`">Goto Recipe</a></div>
-                            <div class="recipecard-fav-button" id="`+resposeJSON.meals[i].idMeal+`"><a href="#" onClick="add_to_favourites()"><i class="fa-regular fa-heart"></i></a>
+                            <div class="recipecard-button"><a href="/recipe.html?item=`+ resposeJSON.meals[i].strMeal + `">Goto Recipe</a></div>
+                            <div class="recipecard-fav-button" id=""><a href="#" onClick="add_to_favourites(`+ resposeJSON.meals[i].idMeal + `)"><i class="fa-regular fa-heart"></i></a>
                             </div>
                         </div>
                     </div>
@@ -190,11 +220,20 @@ function fetchRecipe_fromCat(category_name) {
     };
     xhrRequest.open('get', 'https://www.themealdb.com/api/json/v1/1/filter.php?c=' + category_name);
     xhrRequest.send();
-    
+
 }
 
 
 //favorite button listener
-function add_to_favourites(){
-    alert("Added to your favourites")
+function add_to_favourites(key) {
+    alert("Added to your favourites");
+    console.log(key, key)
+    //storing data to local storage of browser
+    //because we need only key to fetch and store data uniquely
+    localStorage.setItem(key, key);//setting data with key as id and name as name of recipe
+}
+function remove_from_favourites(key) {
+    alert("Removed from favourites");
+    //deleting data from local storage
+    localStorage.removeItem(key);
 }
