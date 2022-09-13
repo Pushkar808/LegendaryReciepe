@@ -205,6 +205,7 @@ function fetchRecipe_fromCat(category_name) {
         let resposeJSON = JSON.parse(xhrRequest.response);
         let res_length = resposeJSON.meals.length;
         //setting html
+        document.getElementById('detailed-category-name').innerHTML=category_name+":";
         for (let i = 0; i < res_length; i++) {
             let name = resposeJSON.meals[i].strMeal;
 
