@@ -129,7 +129,7 @@ suggetion_input.addEventListener('keydown', (e) => {
     e.preventDefault();//so that it will not submit the form on enter just change input value
     const active_suggetion = document.getElementsByClassName('suggetion-active')[0];
     //setting the input box value after pressing enter
-    const value=active_suggetion.innerHTML.replace(/&amp;/g, '&');
+    const value = active_suggetion.innerHTML.replace(/&amp;/g, '&');
     suggetion_input.value = value;
     //getting control/cursor back to input box
     suggetion_input.focus();

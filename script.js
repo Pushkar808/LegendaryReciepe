@@ -193,6 +193,9 @@ else if (page == "detailed_category.html") {
     var category_name = url.searchParams.get("category_name");
     fetchRecipe_fromCat(category_name);
 }
+else if (page == "favourites.html") {
+    getFavourites();
+}
 
 //function to fetch recipe from category and parse to html
 function fetchRecipe_fromCat(category_name) {
@@ -236,4 +239,38 @@ function remove_from_favourites(key) {
     alert("Removed from favourites");
     //deleting data from local storage
     localStorage.removeItem(key);
+}
+
+//getting data from id stored in localStorage
+function getFavourites() {
+    for (let i = 0; i < localStorage.length; i++) {//iterating overall the keys
+        setFavourites(localStorage.key(i));//function to set the favourites as per the key given to it
+    }
+}
+
+
+function setFavourites(key) {
+    const container = document.getElementById('favourites-container');
+    var xhrRequest = new XMLHttpRequest();
+    xhrRequest.onload = () => {
+        let resposeJSON = JSON.parse(xhrRequest.response);
+        let res_length = resposeJSON.meals.length;
+        console.log(resposeJSON.meals[0]);
+        //setting html
+                container.innerHTML += `
+                <div class="favourite-card">
+                    <div class="recipecard-image">
+                        <img src="`+resposeJSON.meals[0].strMealThumb+`">
+                    </div>
+                    <div class="recipe-info-container">
+                        <div class="favourite-recipe-name">`+resposeJSON.meals[0].strMeal+`</div>
+                        <div class="favourite-recipe-button"><a href="/recipe.html?item=`+resposeJSON.meals[0].strMeal+`" class="fav-recipe-button">Goto Recipe</a>
+                        </div>
+                    </div>
+                </div>
+                `
+    };
+    xhrRequest.open('get', 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=' + key);
+    xhrRequest.send();
+
 }
