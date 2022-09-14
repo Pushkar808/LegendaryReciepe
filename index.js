@@ -2,56 +2,63 @@
 //script.js so that code will be simple and easy to understand
 
 const menu_button = document.getElementById('menu_button');
-
-
+const hamburger_menu = document.getElementById('hamburger_menu_container');
+hamburger_menu.style.display = "none";//hides the menu initally
 //after clicking menu button show the menu for mobile device only
-menu_button.onclick = () => {
-  const hamburger_menu = document.getElementById('hamburger_menu_container');
+menu_button.addEventListener('click', () => {
+
   if (hamburger_menu.style.display == "block") { // if is hamburger_menu displayed, hide it
     hamburger_menu.style.display = "none";
   }
   else { // if is hamburger_menu hidden, display it
-
     hamburger_menu.style.display = "block";
   }
-}
+})
+//getting the html page name so that we can run the function
+var path = window.location.pathname;
+var page = path.split("/").pop();
+if (page == 'index.html') {
+  //set and run the animation and comment part
+  startAnimation();
+  //trigering query only for mobile devices
+  const mediaQuery = window.matchMedia('(max-width:768px)')
+  if (mediaQuery.matches) {
+    // Then trigger an alert
+    start_comment();
+  }
 
+}
 
 //scroll animation trigger 
-const message_container = document.getElementById('welcome-message-container');
-window.addEventListener('scroll', () => {
-  var coordinates = message_container.getBoundingClientRect();
-  const banner = document.getElementById('img-container');
-  const header = document.getElementById('header');
-  let animate = true;
-  if (animate && coordinates.top <= window.innerHeight)//if the section is visible then animate
-  {
-    animate = false;
-    header.classList.add("fixed-header");
-    header.classList.remove("relative-header");
-    banner.style.visibility = "visible";
-    banner.style.animation = " fade 2s linear";
-  }
-  else {
-    //so that animation will reset to run it again when scrolled
-    banner.style.animation = "none";
-    banner.offsetHeight;
-    banner.style.animation = null;
-    animate = true;
-    banner.style.visibility = "hidden";
-    header.classList.add("relative-header");
-    header.classList.remove("fixed-header");
-  }
+function startAnimation() {
+  const message_container = document.getElementById('welcome-message-container');
+  window.addEventListener('scroll', () => {
+    var coordinates = message_container.getBoundingClientRect();
+    const banner = document.getElementById('img-container');
+    const header = document.getElementById('header');
+    let animate = true;
+    if (animate && coordinates.top <= window.innerHeight)//if the section is visible then animate
+    {
+      animate = false;
+      header.classList.add("fixed-header");
+      header.classList.remove("relative-header");
+      banner.style.visibility = "visible";
+      banner.style.animation = " fade 2s linear";
+    }
+    else {
+      //so that animation will reset to run it again when scrolled
+      banner.style.animation = "none";
+      banner.offsetHeight;
+      banner.style.animation = null;
+      animate = true;
+      banner.style.visibility = "hidden";
+      header.classList.add("relative-header");
+      header.classList.remove("fixed-header");
+    }
 
-});
-
-
-//trigering query only for mobile devices
-const mediaQuery = window.matchMedia('(max-width:768px)')
-if (mediaQuery.matches) {
-  // Then trigger an alert
-  start_comment();
+  });
 }
+
 
 //random setInterval for comment section to show comment 
 function start_comment() {
@@ -148,5 +155,15 @@ function remove_suggclass() {
     classes[0].classList.remove('suggetion-active');
   }
 }
+
+function submit_on_click(name) {
+  // console.log(name);
+  //if user clicks on the option menu the directly go to the recipe
+  window.location.href = "http://127.0.0.1:5500/recipe.html?item=" + name;
+}
+
+
+
+
 
 

@@ -2,7 +2,7 @@
 //link to search anything with category:
 // https://www.themealdb.com/api/json/v1/1/filter.php?c=Pasta
 //ajax call to get the category only for category.html
-(function () {
+function setCategory(){
     var xhrRequest = new XMLHttpRequest();
     xhrRequest.onload = () => {
         let resposeJSON = JSON.parse(xhrRequest.response);
@@ -24,8 +24,7 @@
     };
     xhrRequest.open('get', 'https://www.themealdb.com/api/json/v1/1/categories.php');
     xhrRequest.send();
-
-})();
+}
 // /www.themealdb.com/api/json/v1/1/search.php?f=a
 //filling suggetions using AJAX
 let current_input = "";
@@ -47,7 +46,7 @@ document.getElementById('search-input').addEventListener('keydown', (event) => {
                     //if the substring is there in recipe_name
                     suggetion_count += 1;
                     suggestion_container.innerHTML += `
-                <div id="suggetion-item`+ suggetion_count + `">` + receipe_name[i] + `</div>
+                <div name="aaaa" id="suggetion-item`+ suggetion_count + `">` + receipe_name[i] + `</div>
                 <hr>
             `;
                 }//if inside for loop end
@@ -79,7 +78,7 @@ function addJSONlist(event) {
                 receipe_name.push(name);//so that we have the array for the particular letter recipes
 
                 suggestion_container.innerHTML += `
-        <div id="suggetion-item`+ suggetion_count + `">` + name + `</div>
+        <div onclick="submit_on_click('` + name + `')" id="suggetion-item`+ suggetion_count + `">` + name + `</div>
         <hr>
     `;
             }
@@ -194,8 +193,12 @@ else if (page == "detailed_category.html") {
     fetchRecipe_fromCat(category_name);
 }
 else if (page == "favourites.html") {
-    getFavourites();
+    getFavourites();//getfavourites for the favourites page
 }
+else if (page == "categories.html") {
+    setCategory();//set category for the category page
+}
+
 
 //function to fetch recipe from category and parse to html
 function fetchRecipe_fromCat(category_name) {
@@ -231,7 +234,7 @@ function fetchRecipe_fromCat(category_name) {
 //favorite button listener
 function add_to_favourites(key) {
     alert("Added to your favourites");
-    console.log(key, key)
+    // console.log(key, key)
     //storing data to local storage of browser
     //because we need only key to fetch and store data uniquely
     localStorage.setItem(key, key);//setting data with key as id and name as name of recipe
@@ -256,7 +259,7 @@ function setFavourites(key) {
     xhrRequest.onload = () => {
         let resposeJSON = JSON.parse(xhrRequest.response);
         let res_length = resposeJSON.meals.length;
-        console.log(resposeJSON.meals[0]);
+        // console.log(resposeJSON.meals[0]);
         //setting html
                 container.innerHTML += `
                 <div class="favourite-card">
