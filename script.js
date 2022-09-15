@@ -217,7 +217,11 @@ function fetchRecipe_fromCat(category_name) {
                         <div class="recipecard-image"><img src="`+ resposeJSON.meals[i].strMealThumb + `"></div>
                         <div class="recipecard-info">`+ resposeJSON.meals[i].strMeal + `</div>
                         <div class="card-button">
+<<<<<<< HEAD
                             <div class="recipecard-button"><a href="./recipe.html?item=`+ resposeJSON.meals[i].strMeal + `">Goto Recipe</a></div>
+=======
+                            <div class="recipecard-button"><a href="https://pushkar808.github.io/recipe.html?item=`+ resposeJSON.meals[i].strMeal + `">Goto Recipe</a></div>
+>>>>>>> 08d90f5efe25876a47a326dee5dcc71ef2301fc5
                             <div class="recipecard-fav-button" id=""><a href="#" onClick="add_to_favourites(`+ resposeJSON.meals[i].idMeal + `)"><i class="fa-regular fa-heart"></i></a>
                             </div>
                         </div>
@@ -268,7 +272,11 @@ function setFavourites(key) {
                     </div>
                     <div class="recipe-info-container">
                         <div class="favourite-recipe-name">`+resposeJSON.meals[0].strMeal+`</div>
+<<<<<<< HEAD
                         <div class="favourite-recipe-button"><a href="./recipe.html?item=`+resposeJSON.meals[0].strMeal+`" class="fav-recipe-button">Goto Recipe</a>
+=======
+                        <div class="favourite-recipe-button"><a href="https://pushkar808.github.io/recipe.html??item=`+resposeJSON.meals[0].strMeal+`" class="fav-recipe-button">Goto Recipe</a>
+>>>>>>> 08d90f5efe25876a47a326dee5dcc71ef2301fc5
                         </div>
                     </div>
                 </div>
