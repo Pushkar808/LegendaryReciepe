@@ -158,7 +158,7 @@ function remove_suggclass() {
 function submit_on_click(name) {
   // console.log(name);
   //if user clicks on the option menu the directly go to the recipe
-  window.location.href = "http://127.0.0.1:5500/recipe.html?item=" + name;
+  window.location.href = "./recipe.html?item=" + name;
 }
 
 
