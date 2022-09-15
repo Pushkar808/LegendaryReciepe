@@ -771,15 +771,14 @@ footer {
     text-align: center;
     top: 0;
     filter: brightness(100%);
+    color:rgb(0, 0, 0)
+    /* visibility: hidden; */
 }
 
 .recipe-info-container:hover {
+    background-color: #f0be53bb;
     border-radius: 10px;
     box-shadow: black 0px 0px 10px;
-}
-
-.recipe-info-container:hover {
-    background-color: #f0be5391
 }
 
 .favourite-recipe-name {

@@ -110,7 +110,6 @@ cross_button.addEventListener('click', () => {
 });
 
 
-
 // suggetion box styling on key press and key down
 let suggetion_number = 0;//suggetion number id increase it to go further
 let suggetion_item = "";
