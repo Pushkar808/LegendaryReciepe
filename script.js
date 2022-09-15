@@ -15,7 +15,7 @@ function setCategory(){
             let category_container = document.getElementById('category-container');
             category_container.innerHTML += `
             <div id="category">
-                <a href="detailed_category.html?category_name=`+ category_name + `"><div id="category-img"><img src="` + image + `" alt="Category image"></div></a>
+                <a href="./detailed_category.html?category_name=`+ category_name + `"><div id="category-img"><img src="` + image + `" alt="Category image"></div></a>
                 <div id="catgeory-name">`+ category_name + `</div>
             </div>
             `;
@@ -211,13 +211,13 @@ function fetchRecipe_fromCat(category_name) {
         document.getElementById('detailed-category-name').innerHTML=category_name+":";
         for (let i = 0; i < res_length; i++) {
             let name = resposeJSON.meals[i].strMeal;
-
+            //container html
             container.innerHTML += `
             <div class="recipe-card">
                         <div class="recipecard-image"><img src="`+ resposeJSON.meals[i].strMealThumb + `"></div>
                         <div class="recipecard-info">`+ resposeJSON.meals[i].strMeal + `</div>
                         <div class="card-button">
-                            <div class="recipecard-button"><a href="/recipe.html?item=`+ resposeJSON.meals[i].strMeal + `">Goto Recipe</a></div>
+                            <div class="recipecard-button"><a href="./recipe.html?item=`+ resposeJSON.meals[i].strMeal + `">Goto Recipe</a></div>
                             <div class="recipecard-fav-button" id=""><a href="#" onClick="add_to_favourites(`+ resposeJSON.meals[i].idMeal + `)"><i class="fa-regular fa-heart"></i></a>
                             </div>
                         </div>
@@ -268,7 +268,7 @@ function setFavourites(key) {
                     </div>
                     <div class="recipe-info-container">
                         <div class="favourite-recipe-name">`+resposeJSON.meals[0].strMeal+`</div>
-                        <div class="favourite-recipe-button"><a href="/recipe.html?item=`+resposeJSON.meals[0].strMeal+`" class="fav-recipe-button">Goto Recipe</a>
+                        <div class="favourite-recipe-button"><a href="./recipe.html?item=`+resposeJSON.meals[0].strMeal+`" class="fav-recipe-button">Goto Recipe</a>
                         </div>
                     </div>
                 </div>
